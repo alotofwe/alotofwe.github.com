@@ -3,19 +3,25 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives | HPA</title>
+  <title>競プロ用C++テンプレート | HPA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="">
+  
 
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HPA">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="テンプレートです．今後競プロ系の記事を上げる際は，主にinclude周りを省略します．
+1234567891011121314151617181920212223242526272829#include &amp;lt;iostream&amp;gt;#include &amp;lt;complex&amp;gt;#include &amp;lt;sstream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="競プロ用C++テンプレート">
+<meta property="og:url" content="http://yoursite.com/2015/12/05/競プロ用C-テンプレート/index.html">
 <meta property="og:site_name" content="HPA">
-<meta property="og:description">
+<meta property="og:description" content="テンプレートです．今後競プロ系の記事を上げる際は，主にinclude周りを省略します．
+1234567891011121314151617181920212223242526272829#include &amp;lt;iostream&amp;gt;#include &amp;lt;complex&amp;gt;#include &amp;lt;sstream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;l">
+<meta property="og:updated_time" content="2015-12-05T06:15:28.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HPA">
-<meta name="twitter:description">
+<meta name="twitter:title" content="競プロ用C++テンプレート">
+<meta name="twitter:description" content="テンプレートです．今後競プロ系の記事を上げる際は，主にinclude周りを省略します．
+1234567891011121314151617181920212223242526272829#include &amp;lt;iostream&amp;gt;#include &amp;lt;complex&amp;gt;#include &amp;lt;sstream&amp;gt;#include &amp;lt;string&amp;gt;#include &amp;l">
   
   
     <link rel="icon" href="/favicon.png">
@@ -134,196 +140,44 @@ ga('send', 'pageview');
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><i class="icon fa fa-archive"></i>archive</h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/競プロ/library/">library</a></h1>
             </div>
             <div class="main-body-content">
               
+  <article id="post-競プロ用C-テンプレート" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
   
+    <h1 class="article-title" itemprop="name">
+      競プロ用C++テンプレート
+    </h1>
   
-    
-    
+
+        </header>
       
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></p>
-        <p class="date"><time datetime="2015-12-05T05:49:06.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/CODE-THANKS-FESTIVAL-2015/" class="title">CODE THANKS FESTIVAL 2015</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        
-オンサイト参加資格が無いので，オープンに出ました．
-http://code-thanks-festival-2015-open.contest.atcoder.jp/
-AAからBに行くときの最短はabs(A - B)です．この場合，100から-100に飛ぶなどということが出来ないので，この計算で大丈夫です．
-12345int main() &#123;  int A, B; cin &gt;&g
+      <p class="article-byline">
+        <a href="/2015/12/05/競プロ用C-テンプレート/" class="article-date">
+  <time datetime="2015-12-05T05:00:57.000Z" itemprop="datePublished">2015-12-05</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <a id="more"></a>
+<p>テンプレートです．<br>今後競プロ系の記事を上げる際は，主にinclude周りを省略します．</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;complex&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;deque&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;list&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;limits&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cctype&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REP(i, j) for(int i = <span class="number">0</span>; i &lt; (int)(j); ++i)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> FOR(i, j, k) for(int i = (int)(j); i &lt; (int)(k); ++i)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> SORT(v) sort((v).begin(), (v).end())</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> REVERSE(v) reverse((v).begin(), (v).end())</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">complex</span>&lt;<span class="keyword">double</span>&gt; P;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://yoursite.com/2015/12/05/競プロ用C-テンプレート/" data-id="cihspl37e0000f4w7cllpl2os" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+        
+        
+      </footer>
     </div>
   </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-        <p class="date"><time datetime="2015-12-05T05:01:24.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/競プロ用C-ライブラリ-幾何/" class="title">競プロ用C++ライブラリ-幾何</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        ほとんどSpaghetti Sourceのコピペです．
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-        <p class="date"><time datetime="2015-12-05T05:01:00.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/競プロ用C-ライブラリ-幾何以外/" class="title">競プロ用C++ライブラリ-幾何以外</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        ほとんどSpaghetti Sourceのコピペです．
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-        <p class="date"><time datetime="2015-12-05T05:00:57.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/競プロ用C-テンプレート/" class="title">競プロ用C++テンプレート</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        
-テンプレートです．今後競プロ系の記事を上げる際は，主にinclude周りを省略します．
-1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;#include &lt;complex&gt;#include &lt;sstream&gt;#include &lt;string&gt;#include &
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/application/">application</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/application/rails/">rails</a></p>
-        <p class="date"><time datetime="2015-12-03T14:42:56.000Z" itemprop="datePublished">2015-12-03</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" class="title">RailsでSidekiqのログをLTSVで出力する</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        
-これ、置いておきますね。
-Gemfile1gem &#39;ltsv&#39;&#10;gem &#39;sidekiq&#39;
-config/sidekiq.yml123456789101112class SidekiqLtsvFormatter &lt; Sidekiq::Logging::Pretty  def call(severity, time, _, message)    "#
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"></p>
-        <p class="date"><time datetime="2015-12-02T15:00:00.000Z" itemprop="datePublished">2015-12-03</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/03/ABOUT-ME/" class="title">About Me</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        玲香です．社内ではすずぴーと呼ばれたりします．
-大学時代は競技プログラマーとして生活しており社会に出てからは，インフラエンジニアとして生活をする予定です．(まだ研修中)
-GMOペパボというところで働いています．
-ブログの内容に，何か不備を見つけましたら，お気軽にTwitterよりお知らせ下さい．
-
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
   
   
-    </div></section>
-  
-  
-
 
             </div>
           </section>
@@ -343,6 +197,29 @@ GMOペパボというところで働いています．
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/05/競プロ用C-ライブラリ-幾何以外/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <p class="article-nav-title">
+        
+          競プロ用C++ライブラリ-幾何以外
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <p class="article-nav-title">RailsでSidekiqのログをLTSVで出力する</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     
