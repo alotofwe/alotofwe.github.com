@@ -11,20 +11,20 @@
 
   <meta name="description" content="これ、置いておきますね。
 Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
-config/sidekiq.yml1234567891011121314class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time, _, message)">
+config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RailsでSidekiqのログをLTSVで出力する">
 <meta property="og:url" content="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/index.html">
 <meta property="og:site_name" content="HPA">
 <meta property="og:description" content="これ、置いておきますね。
 Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
-config/sidekiq.yml1234567891011121314class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time, _, message)">
-<meta property="og:updated_time" content="2015-12-05T06:40:47.000Z">
+config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
+<meta property="og:updated_time" content="2015-12-05T06:46:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RailsでSidekiqのログをLTSVで出力する">
 <meta name="twitter:description" content="これ、置いておきますね。
 Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
-config/sidekiq.yml1234567891011121314class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time, _, message)">
+config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
   
   
     <link rel="icon" href="/favicon.png">
@@ -170,7 +170,7 @@ ga('send', 'pageview');
         <a id="more"></a>
 <p>これ、置いておきますね。</p>
 <figure class="highlight"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem &#39;ltsv&#39;&#10;gem &#39;sidekiq&#39;</span><br></pre></td></tr></table></figure>
-<figure class="highlight ruby"><figcaption><span>config/sidekiq.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SidekiqLtsvFormatter</span> <span class="inheritance">&lt; <span class="parent">Sidekiq::Logging</span></span>::<span class="title">Pretty</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(severity, time, <span class="number">_</span>, message)</span></span></span><br><span class="line">    <span class="string">"<span class="subst">#&#123;<span class="constant">LTSV</span>.dump(&#123;</span><br><span class="line">      <span class="symbol">time:</span> time.utc.iso8601(<span class="number">3</span>),</span><br><span class="line">      <span class="symbol">pid:</span> <span class="constant">::Process</span>.pid,</span><br><span class="line">      <span class="symbol">tid:</span> <span class="constant">Thread</span>.current.object_id.to_s(<span class="number">36</span>),</span><br><span class="line">      <span class="symbol">context:</span> context,</span><br><span class="line">      <span class="symbol">level:</span> severity,</span><br><span class="line">      <span class="symbol">message:</span> message</span><br><span class="line">    &#125;</span>)&#125;\n"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Sidekiq</span>.logger.formatter = <span class="constant">SidekiqLtsvFormatter</span>.new</span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>config/initializers/sidekiq.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SidekiqLtsvFormatter</span> <span class="inheritance">&lt; <span class="parent">Sidekiq::Logging</span></span>::<span class="title">Pretty</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(severity, time, <span class="number">_</span>, message)</span></span></span><br><span class="line">    <span class="string">"<span class="subst">#&#123;<span class="constant">LTSV</span>.dump(&#123;</span><br><span class="line">      <span class="symbol">time:</span> time.utc.iso8601(<span class="number">3</span>),</span><br><span class="line">      <span class="symbol">pid:</span> <span class="constant">::Process</span>.pid,</span><br><span class="line">      <span class="symbol">tid:</span> <span class="constant">Thread</span>.current.object_id.to_s(<span class="number">36</span>),</span><br><span class="line">      <span class="symbol">context:</span> context,</span><br><span class="line">      <span class="symbol">level:</span> severity,</span><br><span class="line">      <span class="symbol">message:</span> message</span><br><span class="line">    &#125;</span>)&#125;\n"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Sidekiq</span>.logger.formatter = <span class="constant">SidekiqLtsvFormatter</span>.new</span><br></pre></td></tr></table></figure>
 <p>だけではあれなので、少し説明をします。</p>
 <hr>
 <p>Sidekiq gemのログは</p>

@@ -282,7 +282,7 @@ AAからBに行くときの最短はabs(A - B)です．この場合，100から-
         
 これ、置いておきますね。
 Gemfile1gem &#39;ltsv&#39;&#10;gem &#39;sidekiq&#39;
-config/sidekiq.yml1234567891011121314class SidekiqLtsvFormatter &lt; Sidekiq::Logging::Pretty  def call(severity, time, _, message)  
+config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &lt; Sidekiq::Logging::Pretty  def call(severity, time
       </p>
     </div>
   </article>
