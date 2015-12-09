@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>プロセス管理ツールの比較 | HPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="systemd,sysvinit">
+  
+
+  <meta name="description" content="OJT中にhsbtさんに口頭で説明して頂いた、プロセス管理ツールについての説明をメモします。
+解釈ミスにより私が間違って理解しているところがある可能性があるため何か間違っている、もしくは足りない所があれば、指摘して頂けるととても嬉しいです。
+プロセス管理ツールとは通常、プログラムは1度走り切ると終了してしまいます。(デーモン化もしていないのに終了しないプログラムは無限ループしていると言えます)
+ま">
+<meta property="og:type" content="article">
+<meta property="og:title" content="プロセス管理ツールの比較">
+<meta property="og:url" content="http://yoursite.com/2015/12/10/プロセス管理ツールの比較/index.html">
+<meta property="og:site_name" content="HPA">
+<meta property="og:description" content="OJT中にhsbtさんに口頭で説明して頂いた、プロセス管理ツールについての説明をメモします。
+解釈ミスにより私が間違って理解しているところがある可能性があるため何か間違っている、もしくは足りない所があれば、指摘して頂けるととても嬉しいです。
+プロセス管理ツールとは通常、プログラムは1度走り切ると終了してしまいます。(デーモン化もしていないのに終了しないプログラムは無限ループしていると言えます)
+ま">
+<meta property="og:updated_time" content="2015-12-09T15:46:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="プロセス管理ツールの比較">
+<meta name="twitter:description" content="OJT中にhsbtさんに口頭で説明して頂いた、プロセス管理ツールについての説明をメモします。
+解釈ミスにより私が間違って理解しているところがある可能性があるため何か間違っている、もしくは足りない所があれば、指摘して頂けるととても嬉しいです。
+プロセス管理ツールとは通常、プログラムは1度走り切ると終了してしまいます。(デーモン化もしていないのに終了しないプログラムは無限ループしていると言えます)
+ま">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71009413-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+    
+      <style type="text/css">
+          .logo { background-image:url(https://pbs.twimg.com/profile_images/378800000585342253/5e542f132b0e1923694d1d699eff982d.jpeg);
+          
+            width: 80px;
+          
+          
+            height: 80px;
+          
+          
+            -webkit-background-size: 80px 80px;
+            -moz-background-size: 80px 80px;
+            background-size: 80px 80px;
+          
+          }
+
+        
+          #footer .logo {
+          
+            width: 80px;
+          
+          
+            height: 80px;
+          
+          
+            -webkit-background-size: 80px 80px;
+            -moz-background-size: 80px 80px;
+            background-size: 80px 80px;
+          
+          }
+        
+      </style>
+    
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">healthy programmer alotofwe</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">Home</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/">application</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/rails/">rails</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/linux/">linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/">競プロ</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/library/">library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/その他/">その他</a></li></ul></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/2015/12/03/ABOUT-ME">About</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/linux/">linux</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-プロセス管理ツールの比較" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      プロセス管理ツールの比較
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/12/10/プロセス管理ツールの比較/" class="article-date">
+  <time datetime="2015-12-09T15:39:08.000Z" itemprop="datePublished">2015-12-10</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p>OJT中に<a href="https://twitter.com/hsbt" target="_blank" rel="external">hsbt</a>さんに口頭で説明して頂いた、<br>プロセス管理ツールについての説明をメモします。</p>
+<p>解釈ミスにより私が間違って理解しているところがある可能性があるため<br>何か間違っている、もしくは足りない所があれば、指摘して頂けるととても嬉しいです。</p>
+<h3 id="プロセス管理ツールとは">プロセス管理ツールとは</h3><p>通常、プログラムは1度走り切ると終了してしまいます。<br>(デーモン化もしていないのに終了しないプログラムは無限ループしていると言えます)</p>
+<p>また、長い間走らせることを想定しているプログラムも<br>何かの異常が起きた場合に、望まぬ終了をしてしまう場合があります。</p>
+<p>プロセス管理ツールは、主に上記のような問題を解決します。<br>つまり</p>
+<ul>
+<li>プログラムをデーモン化し、持続して実行させる</li>
+<li>何かの異常でプログラムが落ちてしまった時に、必要であれば再起動させる</li>
+</ul>
+<p>という機能を持ちます。</p>
+<p>その他、ログを取ったり、プログラムのステータスを確認することができたりします。</p>
+<p>また、プロセス管理ツールによって管理されているプログラムをサービスと呼びます。</p>
+<h3 id="daemon_tools,_monit,_supervisord">daemon tools, monit, supervisord</h3><p>標準でOSに付属していない、yum等で入れるプロセス管理ツールです。</p>
+<p>標準でOSに付いてきたsysVinitはシェルスクリプトを書く必要がありましたが、<br>これらはその欠点を補うように、設定ファイルの記述のみでサービスを管理することができます。</p>
+<p>ただし、CentOS7から標準で付属するsystemctlは<br>シェルスクリプトを書く必要が無い上に、インストールの手間もありません。</p>
+<h3 id="sysVinit">sysVinit</h3><p>CentOS6以前に、OSに標準で付属していたプロセス管理ツールです。</p>
+<p>サービスごとにランレベルというものを決めることができます。<br>ランレベルは以下の6種類が存在します。</p>
+<ul>
+<li>level 0<ul>
+<li>シャットダウン状態</li>
+</ul>
+</li>
+<li>level 1<ul>
+<li>シングルユーザーモード (セーフモード)</li>
+</ul>
+</li>
+<li>level 2<ul>
+<li>ネットワーク機能の無いCUIマルチユーザモード</li>
+</ul>
+</li>
+<li>level 3<ul>
+<li>ネットワーク機能有りのCUIマルチユーザモード</li>
+</ul>
+</li>
+<li>level 4<ul>
+<li>カスタムモード</li>
+</ul>
+</li>
+<li>level 5<ul>
+<li>ネットワーク機能有りのGUIマルチユーザモード</li>
+</ul>
+</li>
+<li>level 6<ul>
+<li>再起動時の状態</li>
+</ul>
+</li>
+</ul>
+<p>ランレベルを決めるということは、そのレベルで起動している際に、そのサービスを起動させるかどうかをしていするということです。<br>つまり、</p>
+<ul>
+<li>ON<ul>
+<li>level 2</li>
+<li>level 3</li>
+<li>level 4</li>
+<li>level 5</li>
+</ul>
+</li>
+<li>OFF<ul>
+<li>level 0</li>
+<li>level 1</li>
+<li>level 6</li>
+</ul>
+</li>
+</ul>
+<p>としている場合は、通常起動時にはそのサービスを起動し<br>シャットダウン・再起動・セーフモードとして起動時は、そのサービスを起動しないという設定になります。</p>
+<p>サービスを管理させる場合は、シェルスクリプトを書く必要があります。<br>このシェルスクリプトは、initスクリプトと呼ばれます。</p>
+<p>例えば、 <code>/etc/init.d</code> に配置されるnginxは、以下の様なinitスクリプトになっています。</p>
+<figure class="highlight sh"><figcaption><span>nginx</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">(略)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">start</span></span>() &#123;</span><br><span class="line">    [ -x <span class="variable">$nginx</span> ] || <span class="built_in">exit</span> <span class="number">5</span></span><br><span class="line">    [ <span class="operator">-f</span> <span class="variable">$NGINX_CONF_FILE</span> ] || <span class="built_in">exit</span> <span class="number">6</span></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Starting <span class="variable">$prog</span>: "</span></span><br><span class="line">    daemon <span class="variable">$nginx</span> -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line">    retval=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    [ <span class="variable">$retval</span> <span class="operator">-eq</span> <span class="number">0</span> ] &amp;&amp; touch <span class="variable">$lockfile</span></span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">stop</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Stopping <span class="variable">$prog</span>: "</span></span><br><span class="line">    killproc <span class="variable">$prog</span></span><br><span class="line">    retval=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    [ <span class="variable">$retval</span> <span class="operator">-eq</span> <span class="number">0</span> ] &amp;&amp; rm <span class="operator">-f</span> <span class="variable">$lockfile</span></span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">restart</span></span>() &#123;</span><br><span class="line">    configtest_q || configtest || <span class="built_in">return</span> <span class="number">6</span></span><br><span class="line">    stop</span><br><span class="line">    start</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">reload</span></span>() &#123;</span><br><span class="line">    configtest_q || configtest || <span class="built_in">return</span> <span class="number">6</span></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Reloading <span class="variable">$prog</span>: "</span></span><br><span class="line">    killproc <span class="variable">$nginx</span> -HUP</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">configtest</span></span>() &#123;</span><br><span class="line">  <span class="variable">$nginx</span> -t -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">configtest_q</span></span>() &#123;</span><br><span class="line">    configtest &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">rh_status</span></span>() &#123;</span><br><span class="line">    status <span class="variable">$prog</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">rh_status_q</span></span>() &#123;</span><br><span class="line">    rh_status &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Upgrade the binary with no downtime.</span></span><br><span class="line"><span class="function"><span class="title">upgrade</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> pidfile=<span class="string">"/var/run/<span class="variable">$&#123;prog&#125;</span>.pid"</span></span><br><span class="line">    <span class="built_in">local</span> oldbin_pidfile=<span class="string">"<span class="variable">$&#123;pidfile&#125;</span>.oldbin"</span></span><br><span class="line"></span><br><span class="line">    configtest_q || configtest || <span class="built_in">return</span> <span class="number">6</span></span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">"Staring new master <span class="variable">$prog</span>: "</span></span><br><span class="line">    killproc <span class="variable">$nginx</span> -USR2</span><br><span class="line">    retval=$?</span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line">    sleep <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> [[ <span class="operator">-f</span> <span class="variable">$&#123;oldbin_pidfile&#125;</span> &amp;&amp; <span class="operator">-f</span> <span class="variable">$&#123;pidfile&#125;</span> ]];  <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> -n $<span class="string">"Graceful shutdown of old <span class="variable">$prog</span>: "</span></span><br><span class="line">        killproc -p <span class="variable">$&#123;oldbin_pidfile&#125;</span> -QUIT</span><br><span class="line">        retval=$?</span><br><span class="line">        <span class="built_in">echo</span></span><br><span class="line">        <span class="built_in">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> $<span class="string">"Something bad happened, manual intervention required, maybe restart?"</span></span><br><span class="line">        <span class="built_in">return</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">    start)</span><br><span class="line">        rh_status_q &amp;&amp; <span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line">    stop)</span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> <span class="number">0</span></span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line">    restart|configtest)</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line">    force-reload|upgrade)</span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> <span class="number">7</span></span><br><span class="line">        upgrade</span><br><span class="line">        ;;</span><br><span class="line">    reload)</span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> <span class="number">7</span></span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line">    status|status_q)</span><br><span class="line">        rh_<span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line">    condrestart|try-restart)</span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> <span class="number">7</span></span><br><span class="line">        restart</span><br><span class="line">            ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> $<span class="string">"Usage: <span class="variable">$0</span> &#123;start|stop|reload|configtest|status|force-reload|upgrade|restart&#125;"</span></span><br><span class="line">        <span class="built_in">exit</span> <span class="number">2</span></span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<p>これを見て分かる通り、 <code>service nginx start</code> や <code>/etc/init.d/nginx start</code> とすることは<br>このinitスクリプトの <code>start()</code> を実行しているということと同じ意味になります。</p>
+<p>そのため、自作のサービスを登録する際は、このinitスクリプトを書く必要があります。</p>
+<h3 id="systemd">systemd</h3><p>CentOS7以降に、OSに標準で付属するようになったプロセス管理ツールです。<br>sysVinitのようにinitスクリプトを書く必要がなく、設定ファイルのみの用意でサービスを管理することができます。</p>
+<p>sysVinitでは、サービスをスクリプト単位で管理していましたが<br>systemdではUnitと呼ばれる単位で管理します。</p>
+<p>systemdはsysVinitの機能に加え、様々な機能が備わっています。<br>以下、その機能の例です。</p>
+<ul>
+<li>サービス間の関係を定義することができる<ul>
+<li>このサービスが起動する際はこのサービスも一緒に起動する、ということが指定可能</li>
+<li>サービスの起動順序も定義可能</li>
+</ul>
+</li>
+<li>複数のUnitを1つのUnitとしてまとめることができる<ul>
+<li>target Unitと呼ばれる</li>
+</ul>
+</li>
+</ul>
+<p>sysVinitと互換性があり、systemdの <code>systemctl</code> コマンドを利用した際は、以下のように処理されます。</p>
+<ol>
+<li>systemd管理下のサービスの中に、指定されたサービスが存在するかを調べる</li>
+<li>systemd管理下に存在していれば <code>systemctl</code> コマンドで指定された挙動を行う (終了)</li>
+<li>systemd管理下に存在しなければ、sysVinit管理下のサービスの中に、指定されたサービスが存在するかを調べる</li>
+<li>sysVinit管理下に存在していれば、 <code>systemctl</code> で指定されたコマンドを <code>chkconfig</code> 等のコマンドに置き換え、指定された挙動を行う (終了)</li>
+<li>sysVinit管理下に存在しなければ、存在しないサービスであると判定する (終了)</li>
+</ol>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://yoursite.com/2015/12/10/プロセス管理ツールの比較/" data-id="cihyzw8d9000crpw7tf13o48b" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+        
+          <a href="http://yoursite.com/2015/12/10/プロセス管理ツールの比較/#comments" class="article-comment-link"><i class="fa fa-comments"></i>Comments</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/systemd/">systemd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sysvinit/">sysvinit</a></li></ul>
+
+      </footer>
+    </div>
+  </article>
+  
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </section>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>follow:</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="twitter" href="https://twitter.com/alotofwe" target="_blank"><i class="icon fa fa-twitter"></i></a></li>
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/alotofwe" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="http://alotofwe.github.io/atom.xml" target="_blank"><i class="icon fa fa-rss"></i></a></li>
+      
+        <li><a class="social-tooltip" title="book" href="http://booklog.jp/users/anyaneko" target="_blank"><i class="icon fa fa-book"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/12/10/Advent-of-Code-2015/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">newer</strong>
+      <p class="article-nav-title">
+        
+          Advent of Code 2015
+        
+      </p>
+      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+  
+  
+    <a href="/2015/12/05/CODE-THANKS-FESTIVAL-2015/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <p class="article-nav-title">CODE THANKS FESTIVAL 2015</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">recents</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/その他/">その他</a></p>
+              <p class="item-title"><a href="/2015/12/10/Advent-of-Code-2015/" class="title">Advent of Code 2015</a></p>
+              <p class="item-date"><time datetime="2015-12-09T15:43:05.000Z" itemprop="datePublished">2015-12-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
+              <p class="item-title"><a href="/2015/12/10/プロセス管理ツールの比較/" class="title">プロセス管理ツールの比較</a></p>
+              <p class="item-date"><time datetime="2015-12-09T15:39:08.000Z" itemprop="datePublished">2015-12-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></p>
+              <p class="item-title"><a href="/2015/12/05/CODE-THANKS-FESTIVAL-2015/" class="title">CODE THANKS FESTIVAL 2015</a></p>
+              <p class="item-date"><time datetime="2015-12-05T05:49:06.000Z" itemprop="datePublished">2015-12-05</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
+              <p class="item-title"><a href="/2015/12/05/競プロ用C-ライブラリ-幾何/" class="title">競プロ用C++ライブラリ-幾何</a></p>
+              <p class="item-date"><time datetime="2015-12-05T05:01:24.000Z" itemprop="datePublished">2015-12-05</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
+              <p class="item-title"><a href="/2015/12/05/競プロ用C-ライブラリ-幾何以外/" class="title">競プロ用C++ライブラリ-幾何以外</a></p>
+              <p class="item-date"><time datetime="2015-12-05T05:01:00.000Z" itemprop="datePublished">2015-12-05</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/application/">application</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/application/rails/">rails</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/">競プロ</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/library/">library</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/その他/">その他</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ltsv/">ltsv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sidekiq/">sidekiq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/systemd/">systemd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysvinit/">sysvinit</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">tag cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ltsv/" style="font-size: 10px;">ltsv</a> <a href="/tags/sidekiq/" style="font-size: 10px;">sidekiq</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/sysvinit/" style="font-size: 10px;">sysvinit</a>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 alotofwe</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'hpalotofwe';
+  
+  
+  var disqus_url = 'http://yoursite.com/2015/12/10/プロセス管理ツールの比較/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

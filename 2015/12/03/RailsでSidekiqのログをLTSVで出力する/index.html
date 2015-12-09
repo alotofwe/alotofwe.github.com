@@ -19,7 +19,7 @@ config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &
 <meta property="og:description" content="これ、置いておきますね。
 Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
 config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
-<meta property="og:updated_time" content="2015-12-05T06:46:14.000Z">
+<meta property="og:updated_time" content="2015-12-09T15:47:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RailsでSidekiqのログをLTSVで出力する">
 <meta name="twitter:description" content="これ、置いておきますね。
@@ -119,7 +119,7 @@ ga('send', 'pageview');
               
                 <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">Home</a></li>
               
-                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/">application</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/rails/">rails</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/">競プロ</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/library/">library</a></li></ul></li></ul>
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/">application</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/rails/">rails</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/linux/">linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/">競プロ</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/library/">library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/その他/">その他</a></li></ul></li></ul>
                   
                 <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/2015/12/03/ABOUT-ME">About</a></li>
               
@@ -167,8 +167,7 @@ ga('send', 'pageview');
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        <a id="more"></a>
-<p>これ、置いておきますね。</p>
+        <p>これ、置いておきますね。</p>
 <figure class="highlight"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem &#39;ltsv&#39;&#10;gem &#39;sidekiq&#39;</span><br></pre></td></tr></table></figure>
 <figure class="highlight ruby"><figcaption><span>config/initializers/sidekiq.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SidekiqLtsvFormatter</span> <span class="inheritance">&lt; <span class="parent">Sidekiq::Logging</span></span>::<span class="title">Pretty</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(severity, time, <span class="number">_</span>, message)</span></span></span><br><span class="line">    <span class="string">"<span class="subst">#&#123;<span class="constant">LTSV</span>.dump(&#123;</span><br><span class="line">      <span class="symbol">time:</span> time.utc.iso8601(<span class="number">3</span>),</span><br><span class="line">      <span class="symbol">pid:</span> <span class="constant">::Process</span>.pid,</span><br><span class="line">      <span class="symbol">tid:</span> <span class="constant">Thread</span>.current.object_id.to_s(<span class="number">36</span>),</span><br><span class="line">      <span class="symbol">context:</span> context,</span><br><span class="line">      <span class="symbol">level:</span> severity,</span><br><span class="line">      <span class="symbol">message:</span> message</span><br><span class="line">    &#125;</span>)&#125;\n"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Sidekiq</span>.logger.formatter = <span class="constant">SidekiqLtsvFormatter</span>.new</span><br></pre></td></tr></table></figure>
 <p>だけではあれなので、少し説明をします。</p>
@@ -185,7 +184,7 @@ ga('send', 'pageview');
 
       </div>
       <footer class="article-footer">
-        <a data-url="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" data-id="cihu1hxs1000c0jw7w91yhhpe" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+        <a data-url="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" data-id="cihyzw8df000jrpw7ye9m30tw" class="article-share-link"><i class="fa fa-share"></i>Share</a>
         
           <a href="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/#comments" class="article-comment-link"><i class="fa fa-comments"></i>Comments</a>
         
@@ -257,6 +256,24 @@ ga('send', 'pageview');
           <li>
             
             <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/その他/">その他</a></p>
+              <p class="item-title"><a href="/2015/12/10/Advent-of-Code-2015/" class="title">Advent of Code 2015</a></p>
+              <p class="item-date"><time datetime="2015-12-09T15:43:05.000Z" itemprop="datePublished">2015-12-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
+              <p class="item-title"><a href="/2015/12/10/プロセス管理ツールの比較/" class="title">プロセス管理ツールの比較</a></p>
+              <p class="item-date"><time datetime="2015-12-09T15:39:08.000Z" itemprop="datePublished">2015-12-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
               <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></p>
               <p class="item-title"><a href="/2015/12/05/CODE-THANKS-FESTIVAL-2015/" class="title">CODE THANKS FESTIVAL 2015</a></p>
               <p class="item-date"><time datetime="2015-12-05T05:49:06.000Z" itemprop="datePublished">2015-12-05</time></p>
@@ -281,24 +298,6 @@ ga('send', 'pageview');
             </div>
           </li>
         
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-              <p class="item-title"><a href="/2015/12/05/競プロ用C-テンプレート/" class="title">競プロ用C++テンプレート</a></p>
-              <p class="item-date"><time datetime="2015-12-05T05:00:57.000Z" itemprop="datePublished">2015-12-05</time></p>
-            </div>
-          </li>
-        
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category"><a class="article-category-link" href="/categories/application/">application</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/application/rails/">rails</a></p>
-              <p class="item-title"><a href="/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" class="title">RailsでSidekiqのログをLTSVで出力する</a></p>
-              <p class="item-date"><time datetime="2015-12-03T14:42:56.000Z" itemprop="datePublished">2015-12-03</time></p>
-            </div>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -308,7 +307,7 @@ ga('send', 'pageview');
   <div class="widget-wrap widget-list">
     <h3 class="widget-title">categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/application/">application</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/application/rails/">rails</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/">競プロ</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/library/">library</a><span class="category-list-count">3</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/application/">application</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/application/rails/">rails</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/">競プロ</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/library/">library</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/その他/">その他</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -318,7 +317,7 @@ ga('send', 'pageview');
   <div class="widget-wrap widget-list">
     <h3 class="widget-title">archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -328,7 +327,7 @@ ga('send', 'pageview');
   <div class="widget-wrap widget-list">
     <h3 class="widget-title">tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ltsv/">ltsv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sidekiq/">sidekiq</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ltsv/">ltsv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sidekiq/">sidekiq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/systemd/">systemd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysvinit/">sysvinit</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -338,7 +337,7 @@ ga('send', 'pageview');
   <div class="widget-wrap widget-float">
     <h3 class="widget-title">tag cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ltsv/" style="font-size: 10px;">ltsv</a> <a href="/tags/sidekiq/" style="font-size: 10px;">sidekiq</a>
+      <a href="/tags/ltsv/" style="font-size: 10px;">ltsv</a> <a href="/tags/sidekiq/" style="font-size: 10px;">sidekiq</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/sysvinit/" style="font-size: 10px;">sysvinit</a>
     </div>
   </div>
 

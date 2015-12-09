@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Advent of Code 2015 | HPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="">
+  
+
+  <meta name="description" content="http://adventofcode.com/
+やります．
+Day 1++ か -- するだけ．
+12345678910int main() &amp;#123;  string s; cin &amp;gt;&amp;gt;s;  int f = 0;  for(char c : s)&amp;#123;    if(c == &apos;(&apos;) f++;    else f--;  &amp;#125;  cout &amp;lt;&amp;lt;f &amp;l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advent of Code 2015">
+<meta property="og:url" content="http://yoursite.com/2015/12/10/Advent-of-Code-2015/index.html">
+<meta property="og:site_name" content="HPA">
+<meta property="og:description" content="http://adventofcode.com/
+やります．
+Day 1++ か -- するだけ．
+12345678910int main() &amp;#123;  string s; cin &amp;gt;&amp;gt;s;  int f = 0;  for(char c : s)&amp;#123;    if(c == &apos;(&apos;) f++;    else f--;  &amp;#125;  cout &amp;lt;&amp;lt;f &amp;l">
+<meta property="og:updated_time" content="2015-12-09T15:51:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advent of Code 2015">
+<meta name="twitter:description" content="http://adventofcode.com/
+やります．
+Day 1++ か -- するだけ．
+12345678910int main() &amp;#123;  string s; cin &amp;gt;&amp;gt;s;  int f = 0;  for(char c : s)&amp;#123;    if(c == &apos;(&apos;) f++;    else f--;  &amp;#125;  cout &amp;lt;&amp;lt;f &amp;l">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+    <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  
+  
+    <link rel="stylesheet" href="/scrollLoading/style.css" type="text/css">
+  
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-71009413-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+  
+    
+      <style type="text/css">
+          .logo { background-image:url(https://pbs.twimg.com/profile_images/378800000585342253/5e542f132b0e1923694d1d699eff982d.jpeg);
+          
+            width: 80px;
+          
+          
+            height: 80px;
+          
+          
+            -webkit-background-size: 80px 80px;
+            -moz-background-size: 80px 80px;
+            background-size: 80px 80px;
+          
+          }
+
+        
+          #footer .logo {
+          
+            width: 80px;
+          
+          
+            height: 80px;
+          
+          
+            -webkit-background-size: 80px 80px;
+            -moz-background-size: 80px 80px;
+            background-size: 80px 80px;
+          
+          }
+        
+      </style>
+    
+  
+
+  
+    <link href='//fonts.useso.com/css?family=Titillium+Web:300,400,600' rel='stylesheet' type='text/css'>
+    <link href="//fonts.useso.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css" type="text/css">
+</head>
+
+<body>
+  <div id="wrap">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div class="container">
+      <div class="container-inner">
+        <div id="header-title">
+          <h1 class="logo-wrap">
+            <a href="/" class="logo"></a>
+          </h1>
+          
+            <h2 class="subtitle-wrap">
+              <p class="subtitle">healthy programmer alotofwe</p>
+            </h2>
+          
+        </div>
+        <div id="header-inner" class="nav-container">
+          <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+          <div class="nav-container-inner">
+            <ul id="main-nav">
+              
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/">Home</a></li>
+              
+                    <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/">application</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/application/rails/">rails</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/linux/">linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/">競プロ</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/library/">library</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/競プロ/その他/">その他</a></li></ul></li></ul>
+                  
+                <li class="main-nav-list-item" ><a class="main-nav-list-link" href="/2015/12/03/ABOUT-ME">About</a></li>
+              
+            </ul>
+            <nav id="sub-nav">
+              <div id="search-form-wrap">
+                
+                  <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+                
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      <div class="main-body container-inner">
+        <div class="main-body-inner">
+          <section id="main">
+            <div class="main-body-header">
+
+              <h1 class="header"><a class="page-title-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/競プロ/その他/">その他</a></h1>
+            </div>
+            <div class="main-body-content">
+              
+  <article id="post-Advent-of-Code-2015" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
+  
+    <h1 class="article-title" itemprop="name">
+      Advent of Code 2015
+    </h1>
+  
+
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2015/12/10/Advent-of-Code-2015/" class="article-date">
+  <time datetime="2015-12-09T15:43:05.000Z" itemprop="datePublished">2015-12-10</time>
+</a>
+      </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p><a href="http://adventofcode.com/" target="_blank" rel="external">http://adventofcode.com/</a></p>
+<p>やります．</p>
+<h3 id="Day_1">Day 1</h3><p><code>++</code> か <code>--</code> するだけ．</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">string</span> s; <span class="built_in">cin</span> &gt;&gt;s;</span><br><span class="line">  <span class="keyword">int</span> f = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">char</span> c : s)&#123;</span><br><span class="line">    <span class="keyword">if</span>(c == <span class="string">'('</span>) f++;</span><br><span class="line">    <span class="keyword">else</span> f--;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt;f &lt;&lt;endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Day_2">Day 2</h3><p>計算するだけ．<br>scanf使えばよかった感．</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; split(<span class="built_in">string</span> &amp;str, <span class="keyword">char</span> delim)&#123;</span><br><span class="line">  <span class="function"><span class="built_in">stringstream</span> <span class="title">ss</span><span class="params">(str)</span></span>;</span><br><span class="line">  <span class="built_in">string</span> tmp;</span><br><span class="line">  <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">  <span class="keyword">while</span>(getline(ss, tmp, delim)) res.push_back(atoi(tmp.c_str()));</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">string</span> s;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt;s)&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v = split(s, <span class="string">'x'</span>);</span><br><span class="line">    <span class="keyword">int</span> m = <span class="number">1e9</span>;</span><br><span class="line">    REP(i, v.size())&#123;</span><br><span class="line">      ans += v[i] * v[(i + <span class="number">1</span>) % (<span class="keyword">int</span>)v.size()] * <span class="number">2</span>;</span><br><span class="line">      m = min(m, v[i] * v[(i + <span class="number">1</span>) % (<span class="keyword">int</span>)v.size()]);</span><br><span class="line">    &#125;</span><br><span class="line">    ans += m;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt;ans &lt;&lt;endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Day_3">Day 3</h3><p>座標を(x, y)で表現し，最初にいるところを(0, 0)とする．<br>その後，移動しながら現在地をSetに入れていく．</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">complex</span>&lt;<span class="keyword">int</span>&gt; P;</span><br><span class="line"><span class="keyword">namespace</span> <span class="built_in">std</span> &#123;</span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> P&amp; a, <span class="keyword">const</span> P&amp; b) &#123;</span><br><span class="line">    <span class="keyword">return</span> real(a) != real(b) ? real(a) &lt; real(b) : imag(a) &lt; imag(b);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  P p = P(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="keyword">int</span> ans = <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">string</span> s; <span class="built_in">cin</span> &gt;&gt;s;</span><br><span class="line">  <span class="built_in">map</span>&lt;<span class="keyword">char</span>, P&gt; m;</span><br><span class="line">  m[<span class="string">'^'</span>] = P(<span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">  m[<span class="string">'&gt;'</span>] = P(<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">  m[<span class="string">'v'</span>] = P(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">  m[<span class="string">'&lt;'</span>] = P(-<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">  <span class="built_in">set</span>&lt;P&gt; S;</span><br><span class="line">  S.insert(P(<span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">char</span> c : s)&#123;</span><br><span class="line">    p += m[c];</span><br><span class="line">    S.insert(p);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt;S.size() &lt;&lt;endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Day_4">Day 4</h3><p>3つの条件をチェックしていく．</p>
+<p>私は1文字の部分文字列と2文字の部分文字列を <code>map&lt;string, int&gt;</code> に入れ<br>部分文字列とその数を数えていった．</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">check</span><span class="params">(<span class="built_in">string</span> &amp;s)</span></span>&#123;</span><br><span class="line">  <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; M;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)s.length(); i++) M[s.substr(i, <span class="number">1</span>)] += <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)s.length() - <span class="number">1</span>; i++) M[s.substr(i, <span class="number">2</span>)] += <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> x = <span class="number">0</span>, y = <span class="number">0</span>, z = <span class="number">0</span>;</span><br><span class="line">  <span class="built_in">string</span> vowels[] = &#123;<span class="string">"a"</span>, <span class="string">"e"</span>, <span class="string">"i"</span>, <span class="string">"o"</span>, <span class="string">"u"</span>&#125;;</span><br><span class="line">  <span class="keyword">for</span>(<span class="built_in">string</span> vowel : vowels) x += M[vowel];</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> c = <span class="string">'a'</span>; c &lt;= <span class="string">'z'</span>; c++)&#123;</span><br><span class="line">    <span class="built_in">stringstream</span> ss;</span><br><span class="line">    ss &lt;&lt; (<span class="keyword">char</span>)c &lt;&lt; (<span class="keyword">char</span>)c;</span><br><span class="line">    y += M[ss.str()];</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">string</span> invalid[] = &#123;<span class="string">"ab"</span>, <span class="string">"cd"</span>, <span class="string">"pq"</span>, <span class="string">"xy"</span>&#125;;</span><br><span class="line">  <span class="keyword">for</span>(<span class="built_in">string</span> inv : invalid) z += M[inv];</span><br><span class="line">  <span class="keyword">return</span> x &gt;= <span class="number">3</span> &amp;&amp; y &gt;= <span class="number">1</span> &amp;&amp; z == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="built_in">string</span> s;</span><br><span class="line">  <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt;s) ans += check(s);</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt;ans &lt;&lt;endl;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://yoursite.com/2015/12/10/Advent-of-Code-2015/" data-id="cihyzw8dr000wrpw74zniue2r" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+        
+          <a href="http://yoursite.com/2015/12/10/Advent-of-Code-2015/#comments" class="article-comment-link"><i class="fa fa-comments"></i>Comments</a>
+        
+        
+      </footer>
+    </div>
+  </article>
+  
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+      </div>
+    </section>
+  
+  
+
+            </div>
+          </section>
+          <aside id="sidebar">
+  <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+  <div class="sidebar-top">
+    <p>follow:</p>
+    <ul class="social-links">
+      
+        <li><a class="social-tooltip" title="twitter" href="https://twitter.com/alotofwe" target="_blank"><i class="icon fa fa-twitter"></i></a></li>
+      
+        <li><a class="social-tooltip" title="github" href="https://github.com/alotofwe" target="_blank"><i class="icon fa fa-github"></i></a></li>
+      
+        <li><a class="social-tooltip" title="rss" href="http://alotofwe.github.io/atom.xml" target="_blank"><i class="icon fa fa-rss"></i></a></li>
+      
+        <li><a class="social-tooltip" title="book" href="http://booklog.jp/users/anyaneko" target="_blank"><i class="icon fa fa-book"></i></a></li>
+      
+    </ul>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/10/プロセス管理ツールの比較/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <p class="article-nav-title">プロセス管理ツールの比較</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
+  
+  <div class="widgets-container">
+    
+      
+  <div class="widget-wrap">
+    <h3 class="widget-title">recents</h3>
+    <div class="widget">
+      <ul id="recent-post" class="no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/その他/">その他</a></p>
+              <p class="item-title"><a href="/2015/12/10/Advent-of-Code-2015/" class="title">Advent of Code 2015</a></p>
+              <p class="item-date"><time datetime="2015-12-09T15:43:05.000Z" itemprop="datePublished">2015-12-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
+              <p class="item-title"><a href="/2015/12/10/プロセス管理ツールの比較/" class="title">プロセス管理ツールの比較</a></p>
+              <p class="item-date"><time datetime="2015-12-09T15:39:08.000Z" itemprop="datePublished">2015-12-10</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></p>
+              <p class="item-title"><a href="/2015/12/05/CODE-THANKS-FESTIVAL-2015/" class="title">CODE THANKS FESTIVAL 2015</a></p>
+              <p class="item-date"><time datetime="2015-12-05T05:49:06.000Z" itemprop="datePublished">2015-12-05</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
+              <p class="item-title"><a href="/2015/12/05/競プロ用C-ライブラリ-幾何/" class="title">競プロ用C++ライブラリ-幾何</a></p>
+              <p class="item-date"><time datetime="2015-12-05T05:01:24.000Z" itemprop="datePublished">2015-12-05</time></p>
+            </div>
+          </li>
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
+              <p class="item-title"><a href="/2015/12/05/競プロ用C-ライブラリ-幾何以外/" class="title">競プロ用C++ライブラリ-幾何以外</a></p>
+              <p class="item-date"><time datetime="2015-12-05T05:01:00.000Z" itemprop="datePublished">2015-12-05</time></p>
+            </div>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/application/">application</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/application/rails/">rails</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/">競プロ</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/library/">library</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/競プロ/その他/">その他</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-list">
+    <h3 class="widget-title">tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ltsv/">ltsv</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sidekiq/">sidekiq</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/systemd/">systemd</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sysvinit/">sysvinit</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-float">
+    <h3 class="widget-title">tag cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ltsv/" style="font-size: 10px;">ltsv</a> <a href="/tags/sidekiq/" style="font-size: 10px;">sidekiq</a> <a href="/tags/systemd/" style="font-size: 10px;">systemd</a> <a href="/tags/sysvinit/" style="font-size: 10px;">sysvinit</a>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+        </div>
+      </div>
+    </div>
+    <footer id="footer">
+  
+  <div class="container">
+    <div class="container-inner">
+      <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+      <div class="credit">
+        <h1 class="logo-wrap">
+          <a href="/" class="logo"></a>
+        </h1>
+        <p>&copy; 2015 alotofwe</p>
+        <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'hpalotofwe';
+  
+  
+  var disqus_url = 'http://yoursite.com/2015/12/10/Advent-of-Code-2015/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+
+
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+
+  <script src="/scrollLoading/jquery.scrollLoading.js" type="text/javascript"></script>
+  <script src="/scrollLoading/main.js" type="text/javascript"></script>
+
+
+
+
+<script src="/js/html-patch.js" type="text/javascript"></script>
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
