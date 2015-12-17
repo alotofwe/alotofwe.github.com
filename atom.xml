@@ -4,7 +4,7 @@
   <subtitle><![CDATA[healthy programmer alotofwe]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-12-13T15:26:00.000Z</updated>
+  <updated>2015-12-17T16:01:08.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[ksnctf-Onion]]></title>
+    <link href="http://yoursite.com/2015/12/18/ksnctf-Onion/"/>
+    <id>http://yoursite.com/2015/12/18/ksnctf-Onion/</id>
+    <published>2015-12-17T15:51:06.000Z</published>
+    <updated>2015-12-17T16:01:08.000Z</updated>
+    <content type="html"><![CDATA[<p>まず， <code>Onion 暗号</code> でググりました．</p>
+<p>そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが<br>暗号文からはどうもそれが思いつかないため，しばらく考えていたら<br>「エンコードを何重も行う行為として <code>Onion</code> と言っているのでは?」と思いついたので<br>文字列のそれっぽさからBase64のデコードを何重も行っていました．</p>
+<p>そうすると，なんだか <code>begin 666 ... end</code> のような文字列が出てきたので<br>また暗号かあと思ってググりました．</p>
+<p><code>begin 666</code> でググると <code>uuencode</code> というもののwikiに当たりました．<br>beginではじまりendで終わるところもそれっぽいので，ビンゴのようです．<br>デコードするとフラグが現れます．</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>まず， <code>Onion 暗号</code> でググりました．</p>
+<p>そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが<br>暗号文からはどうもそれが思いつかないため，しばらく考えていたら<br>「エンコードを何重も行う行為として <]]>
+    </summary>
+    
+      <category term="CTF" scheme="http://yoursite.com/categories/CTF/"/>
+    
+      <category term="ksnctf" scheme="http://yoursite.com/categories/CTF/ksnctf/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[作るものに対してプライドを持つ]]></title>

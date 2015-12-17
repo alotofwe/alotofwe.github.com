@@ -3,28 +3,28 @@
 <head>
   <meta charset="utf-8">
   
-  <title>RailsでSidekiqのログをLTSVで出力する | HPA</title>
+  <title>ksnctf-Onion | HPA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="keywords" content="ltsv,sidekiq">
+  <meta name="keywords" content="">
   
 
-  <meta name="description" content="これ、置いておきますね。
-Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
-config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
+  <meta name="description" content="まず， Onion 暗号 でググりました．
+そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが暗号文からはどうもそれが思いつかないため，しばらく考えていたら「エンコードを何重も行う行為として Onion と言っているのでは?」と思いついたので文字列のそれっぽさからBase64のデコードを何重も行っていました．
+そうすると，なんだか begin 666 ... end のよう">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RailsでSidekiqのログをLTSVで出力する">
-<meta property="og:url" content="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/index.html">
+<meta property="og:title" content="ksnctf-Onion">
+<meta property="og:url" content="http://yoursite.com/2015/12/18/ksnctf-Onion/index.html">
 <meta property="og:site_name" content="HPA">
-<meta property="og:description" content="これ、置いておきますね。
-Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
-config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
-<meta property="og:updated_time" content="2015-12-09T15:47:35.000Z">
+<meta property="og:description" content="まず， Onion 暗号 でググりました．
+そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが暗号文からはどうもそれが思いつかないため，しばらく考えていたら「エンコードを何重も行う行為として Onion と言っているのでは?」と思いついたので文字列のそれっぽさからBase64のデコードを何重も行っていました．
+そうすると，なんだか begin 666 ... end のよう">
+<meta property="og:updated_time" content="2015-12-17T16:01:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RailsでSidekiqのログをLTSVで出力する">
-<meta name="twitter:description" content="これ、置いておきますね。
-Gemfile1gem &amp;#39;ltsv&amp;#39;&amp;#10;gem &amp;#39;sidekiq&amp;#39;
-config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &amp;lt; Sidekiq::Logging::Pretty  def call(severity, time,">
+<meta name="twitter:title" content="ksnctf-Onion">
+<meta name="twitter:description" content="まず， Onion 暗号 でググりました．
+そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが暗号文からはどうもそれが思いつかないため，しばらく考えていたら「エンコードを何重も行う行為として Onion と言っているのでは?」と思いついたので文字列のそれっぽさからBase64のデコードを何重も行っていました．
+そうすると，なんだか begin 666 ... end のよう">
   
   
     <link rel="icon" href="/favicon.png">
@@ -143,11 +143,11 @@ ga('send', 'pageview');
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><a class="page-title-link" href="/categories/application/">application</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/application/rails/">rails</a></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/CTF/">CTF</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/CTF/ksnctf/">ksnctf</a></h1>
             </div>
             <div class="main-body-content">
               
-  <article id="post-RailsでSidekiqのログをLTSVで出力する" class="article article-single article-type-post" itemscope itemprop="blogPost">
+  <article id="post-ksnctf-Onion" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
       <!--  -->
       
@@ -155,42 +155,30 @@ ga('send', 'pageview');
           
   
     <h1 class="article-title" itemprop="name">
-      RailsでSidekiqのログをLTSVで出力する
+      ksnctf-Onion
     </h1>
   
 
         </header>
       
       <p class="article-byline">
-        <a href="/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" class="article-date">
-  <time datetime="2015-12-03T14:42:56.000Z" itemprop="datePublished">2015-12-03</time>
+        <a href="/2015/12/18/ksnctf-Onion/" class="article-date">
+  <time datetime="2015-12-17T15:51:06.000Z" itemprop="datePublished">2015-12-18</time>
 </a>
       </p>
       <div class="article-entry" itemprop="articleBody">
-        <p>これ、置いておきますね。</p>
-<figure class="highlight"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem &#39;ltsv&#39;&#10;gem &#39;sidekiq&#39;</span><br></pre></td></tr></table></figure>
-<figure class="highlight ruby"><figcaption><span>config/initializers/sidekiq.yml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SidekiqLtsvFormatter</span> <span class="inheritance">&lt; <span class="parent">Sidekiq::Logging</span></span>::<span class="title">Pretty</span></span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(severity, time, <span class="number">_</span>, message)</span></span></span><br><span class="line">    <span class="string">"<span class="subst">#&#123;<span class="constant">LTSV</span>.dump(&#123;</span><br><span class="line">      <span class="symbol">time:</span> time.utc.iso8601(<span class="number">3</span>),</span><br><span class="line">      <span class="symbol">pid:</span> <span class="constant">::Process</span>.pid,</span><br><span class="line">      <span class="symbol">tid:</span> <span class="constant">Thread</span>.current.object_id.to_s(<span class="number">36</span>),</span><br><span class="line">      <span class="symbol">context:</span> context,</span><br><span class="line">      <span class="symbol">level:</span> severity,</span><br><span class="line">      <span class="symbol">message:</span> message</span><br><span class="line">    &#125;</span>)&#125;\n"</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="constant">Sidekiq</span>.logger.formatter = <span class="constant">SidekiqLtsvFormatter</span>.new</span><br></pre></td></tr></table></figure>
-<p>だけではあれなので、少し説明をします。</p>
-<hr>
-<p>Sidekiq gemのログは</p>
-<p><a href="https://github.com/mperham/sidekiq/blob/master/lib/sidekiq/logging.rb#L10-L13" target="_blank" rel="external">https://github.com/mperham/sidekiq/blob/master/lib/sidekiq/logging.rb#L10-L13</a></p>
-<p>このcallの返り値を出力したものになります。</p>
-<p>よって、このcallを何らかの方法で置き換えてあげれば、出力する内容を変えることができます。<br>例えば</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">call</span><span class="params">(severity, time, <span class="number">_</span>, message)</span></span></span><br><span class="line">  <span class="string">"ピエールおはよ〜"</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>とすると、ログに <code>ピエールおはよ〜ピエールおはよ〜ピエールおはよ〜 ...</code>と出力されるということです。<br>callで改行を行わないと、ログが改行されずに出力されることに注意です。</p>
-<p>データをLTSVに成形するために、 <code>ltsv</code> というgemを使っています。<br>使い方の詳細は<a href="https://github.com/condor/ltsv/blob/master/README.md" target="_blank" rel="external">ltsvのREADME</a>参照です。</p>
-<p>最後に、Sidekiq.logger.formatterを自作のもので置き換えてあげれば終了です。  </p>
-<p>sidekiqの再起動が必要かもしれません。変わらなければ一度再起動をしてみてください。</p>
+        <p>まず， <code>Onion 暗号</code> でググりました．</p>
+<p>そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが<br>暗号文からはどうもそれが思いつかないため，しばらく考えていたら<br>「エンコードを何重も行う行為として <code>Onion</code> と言っているのでは?」と思いついたので<br>文字列のそれっぽさからBase64のデコードを何重も行っていました．</p>
+<p>そうすると，なんだか <code>begin 666 ... end</code> のような文字列が出てきたので<br>また暗号かあと思ってググりました．</p>
+<p><code>begin 666</code> でググると <code>uuencode</code> というもののwikiに当たりました．<br>beginではじまりendで終わるところもそれっぽいので，ビンゴのようです．<br>デコードするとフラグが現れます．</p>
 
       </div>
       <footer class="article-footer">
-        <a data-url="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" data-id="ciiafpqvk000rd0w7e215ti7u" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+        <a data-url="http://yoursite.com/2015/12/18/ksnctf-Onion/" data-id="ciiafpqvf000md0w7nsldkr72" class="article-share-link"><i class="fa fa-share"></i>Share</a>
         
-          <a href="http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/#comments" class="article-comment-link"><i class="fa fa-comments"></i>Comments</a>
+          <a href="http://yoursite.com/2015/12/18/ksnctf-Onion/#comments" class="article-comment-link"><i class="fa fa-comments"></i>Comments</a>
         
         
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ltsv/">ltsv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sidekiq/">sidekiq</a></li></ul>
-
       </footer>
     </div>
   </article>
@@ -225,20 +213,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2015/12/05/競プロ用C-テンプレート/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">newer</strong>
-      <p class="article-nav-title">
-        
-          競プロ用C++テンプレート
-        
-      </p>
-      <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
   
-  
-    <a href="/2015/12/03/ABOUT-ME/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/12/13/作るものに対してプライドを持つ/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">older</strong>
-      <p class="article-nav-title">About Me</p>
+      <p class="article-nav-title">作るものに対してプライドを持つ</p>
       <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
     </a>
   
@@ -368,7 +346,7 @@ ga('send', 'pageview');
   var disqus_shortname = 'hpalotofwe';
   
   
-  var disqus_url = 'http://yoursite.com/2015/12/03/RailsでSidekiqのログをLTSVで出力する/';
+  var disqus_url = 'http://yoursite.com/2015/12/18/ksnctf-Onion/';
   
   (function(){
     var dsq = document.createElement('script');
