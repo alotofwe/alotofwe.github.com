@@ -4,7 +4,7 @@
   <subtitle><![CDATA[healthy programmer alotofwe]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2015-12-17T16:03:21.000Z</updated>
+  <updated>2016-01-01T09:13:01.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Rspecのバリデーション周りのテストをshared_examples_forですっきりさせる]]></title>
+    <link href="http://yoursite.com/2016/01/01/Rspec%E3%81%AE%E3%83%90%E3%83%AA%E3%83%87%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E5%91%A8%E3%82%8A%E3%81%AE%E3%83%86%E3%82%B9%E3%83%88%E3%82%92shared-examples-for%E3%81%A7%E3%81%99%E3%81%A3%E3%81%8D%E3%82%8A%E3%81%95%E3%81%9B%E3%82%8B/"/>
+    <id>http://yoursite.com/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/</id>
+    <published>2016-01-01T08:41:46.000Z</published>
+    <updated>2016-01-01T09:13:01.000Z</updated>
+    <content type="html"><![CDATA[<p>Rspecの <code>shared_examples_for</code> を使うと，同じようなテストを使い回すことができます．  </p>
+<p>よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，<br>これを使ってうまく使いまわせるようなテストを書くと，テストが長くならずに楽かと思います．</p>
+<p>バリデーション周りだと</p>
+<ul>
+<li>同じ制約を複数のカラムに適用させている<ul>
+<li>カラム名が違うのでコピーしてカラム名を書き換え</li>
+<li>文字数等の指定が違うのでコピーして値を書き換え</li>
+</ul>
+</li>
+</ul>
+<p>という問題で，テストが長くなりがちかと思いますが<br>以下の書き方をすると，1テスト1行で書くことができます．</p>
+<h2 id="shared_examples_for">shared_examples_for</h2><p>まず，使い回すテストを書きます．  </p>
+<p>前述の，各テストについての微妙な差異は<br>shared_examples_forに引数を与えることができるという点を利用します．</p>
+<p>前提として，FactoryGirlで<br>引数を取らないような <code>クラス名 = ファクトリ名</code> の定義があるものとします．</p>
+<ul>
+<li>例) 値が空の時に保存することができない</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">shared_examples_for 'validate presence' <span class="operator"><span class="keyword">do</span> |column_name|</span><br><span class="line">  let(:factory_name) &#123; described_class.<span class="keyword">name</span>.underscore &#125;</span><br><span class="line">  let(:<span class="built_in">record</span>)       &#123; <span class="keyword">build</span>(factory_name) &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">context</span> <span class="string">"#&#123;column_name&#125;が空の時"</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">before</span> &#123; <span class="built_in">record</span>[column_name] = <span class="string">""</span> &#125;</span><br><span class="line"></span><br><span class="line">    it <span class="string">'保存することができない'</span> <span class="keyword">do</span></span><br><span class="line">      expect(<span class="built_in">record</span>).<span class="keyword">to</span> be_invalid</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>例) 値が指定された長さの時に保存することができない</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">shared_examples_for 'validate length' <span class="operator"><span class="keyword">do</span> |column_name, <span class="keyword">length</span>|</span><br><span class="line">  let(:factory_name) &#123; described_class.<span class="keyword">name</span>.underscore &#125;</span><br><span class="line">  let(:<span class="built_in">record</span>)       &#123; <span class="keyword">build</span>(factory_name) &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">context</span> <span class="string">"#&#123;column_name&#125;が#&#123;length&#125;文字の時"</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">before</span> &#123; <span class="built_in">record</span>[column_name] = <span class="string">"a"</span> * <span class="keyword">length</span>.to_i &#125;</span><br><span class="line"></span><br><span class="line">    it <span class="string">'保存することができない'</span> <span class="keyword">do</span></span><br><span class="line">      expect(<span class="built_in">record</span>).<span class="keyword">to</span> be_invalid</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span></span><br></pre></td></tr></table></figure>
+<p>引数として，必ず対象のカラム名を取るように<br>また他の値が必要であれば，第二引数以降にそれも取るようにします．</p>
+<p>これを， <code>spec/shared/</code> 以下にでも保存しておいて下さい．</p>
+<h2 id="it_behaves_like">it_behaves_like</h2><p>実際にテストを書くべき箇所で，上のテストを使いまわします．</p>
+<p>例えば，</p>
+<ul>
+<li>nameというカラムが空の時は保存されない</li>
+<li>nameというカラムの長さが256の時は保存されない</li>
+</ul>
+<p>ということを確認したい時は</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">it_behaves_like <span class="string">'validate presence'</span>, <span class="symbol">:name</span></span><br><span class="line">it_behaves_like <span class="string">'validate length'</span>,   <span class="symbol">:name</span>, <span class="number">256</span></span><br></pre></td></tr></table></figure>
+<p>と書くことができます．</p>
+<p>また，違うカラムについて同様のテストを試すこともできます．</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it_behaves_like <span class="string">'validate length'</span>, <span class="symbol">:description</span>, <span class="number">256</span></span><br></pre></td></tr></table></figure>
+<p>こう書くと見た目にも分かりやすく，長さが変更された際も修正が楽かと思います．</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Rspecの <code>shared_examples_for</code> を使うと，同じようなテストを使い回すことができます．  </p>
+<p>よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，<br>これを使ってうまく使いまわせるよう]]>
+    </summary>
+    
+      <category term="rspec" scheme="http://yoursite.com/tags/rspec/"/>
+    
+      <category term="application" scheme="http://yoursite.com/categories/application/"/>
+    
+      <category term="rails" scheme="http://yoursite.com/categories/application/rails/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Onion]]></title>

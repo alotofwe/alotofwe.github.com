@@ -3,19 +3,40 @@
 <head>
   <meta charset="utf-8">
   
-  <title>HPA</title>
+  <title>Rspecのバリデーション周りのテストをshared_examples_forですっきりさせる | HPA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="rspec">
+  
 
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="HPA">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Rspecの shared_examples_for を使うと，同じようなテストを使い回すことができます．  
+よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，これを使ってうまく使いまわせるようなテストを書くと，テストが長くならずに楽かと思います．
+バリデーション周りだと
+
+同じ制約を複数のカラムに適用させている
+カラム名が違うのでコピーしてカラム名を書き換え
+文字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rspecのバリデーション周りのテストをshared_examples_forですっきりさせる">
+<meta property="og:url" content="http://yoursite.com/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/index.html">
 <meta property="og:site_name" content="HPA">
-<meta property="og:description">
+<meta property="og:description" content="Rspecの shared_examples_for を使うと，同じようなテストを使い回すことができます．  
+よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，これを使ってうまく使いまわせるようなテストを書くと，テストが長くならずに楽かと思います．
+バリデーション周りだと
+
+同じ制約を複数のカラムに適用させている
+カラム名が違うのでコピーしてカラム名を書き換え
+文字">
+<meta property="og:updated_time" content="2016-01-01T09:13:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HPA">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Rspecのバリデーション周りのテストをshared_examples_forですっきりさせる">
+<meta name="twitter:description" content="Rspecの shared_examples_for を使うと，同じようなテストを使い回すことができます．  
+よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，これを使ってうまく使いまわせるようなテストを書くと，テストが長くならずに楽かと思います．
+バリデーション周りだと
+
+同じ制約を複数のカラムに適用させている
+カラム名が違うのでコピーしてカラム名を書き換え
+文字">
   
   
     <link rel="icon" href="/favicon.png">
@@ -134,327 +155,87 @@ ga('send', 'pageview');
           <section id="main">
             <div class="main-body-header">
 
-              <h1 class="header"><em class="page-title-link" data-url="home">Home</em></h1>
+              <h1 class="header"><a class="page-title-link" href="/categories/application/">application</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/application/rails/">rails</a></h1>
             </div>
             <div class="main-body-content">
               
+  <article id="post-Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+      <!--  -->
+      
+        <header class="article-header">
+          
   
+    <h1 class="article-title" itemprop="name">
+      Rspecのバリデーション周りのテストをshared_examples_forですっきりさせる
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year"><i class="icon fa fa-calendar-o"></i>2016</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/application/">application</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/application/rails/">rails</a></p>
-        <p class="date"><time datetime="2016-01-01T08:41:46.000Z" itemprop="datePublished">2016-01-01</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/" class="title">Rspecのバリデーション周りのテストをshared_examples_forですっきりさせる</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        Rspecの shared_examples_for を使うと，同じようなテストを使い回すことができます．  
-よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，これを使ってうまく使いまわせるようなテストを書くと，テストが長くならずに楽かと思います．
-バリデーション周りだと
 
-同じ制約を複数のカラムに適用させている
-カラム名が違うのでコピーしてカラム名を書き換え
-文字
+        </header>
+      
+      <p class="article-byline">
+        <a href="/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/" class="article-date">
+  <time datetime="2016-01-01T08:41:46.000Z" itemprop="datePublished">2016-01-01</time>
+</a>
       </p>
+      <div class="article-entry" itemprop="articleBody">
+        <p>Rspecの <code>shared_examples_for</code> を使うと，同じようなテストを使い回すことができます．  </p>
+<p>よく書くテストというと，Railsでは特にバリデーション周りがあるかと思うので，<br>これを使ってうまく使いまわせるようなテストを書くと，テストが長くならずに楽かと思います．</p>
+<p>バリデーション周りだと</p>
+<ul>
+<li>同じ制約を複数のカラムに適用させている<ul>
+<li>カラム名が違うのでコピーしてカラム名を書き換え</li>
+<li>文字数等の指定が違うのでコピーして値を書き換え</li>
+</ul>
+</li>
+</ul>
+<p>という問題で，テストが長くなりがちかと思いますが<br>以下の書き方をすると，1テスト1行で書くことができます．</p>
+<h2 id="shared_examples_for">shared_examples_for</h2><p>まず，使い回すテストを書きます．  </p>
+<p>前述の，各テストについての微妙な差異は<br>shared_examples_forに引数を与えることができるという点を利用します．</p>
+<p>前提として，FactoryGirlで<br>引数を取らないような <code>クラス名 = ファクトリ名</code> の定義があるものとします．</p>
+<ul>
+<li>例) 値が空の時に保存することができない</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">shared_examples_for 'validate presence' <span class="operator"><span class="keyword">do</span> |column_name|</span><br><span class="line">  let(:factory_name) &#123; described_class.<span class="keyword">name</span>.underscore &#125;</span><br><span class="line">  let(:<span class="built_in">record</span>)       &#123; <span class="keyword">build</span>(factory_name) &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">context</span> <span class="string">"#&#123;column_name&#125;が空の時"</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">before</span> &#123; <span class="built_in">record</span>[column_name] = <span class="string">""</span> &#125;</span><br><span class="line"></span><br><span class="line">    it <span class="string">'保存することができない'</span> <span class="keyword">do</span></span><br><span class="line">      expect(<span class="built_in">record</span>).<span class="keyword">to</span> be_invalid</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>例) 値が指定された長さの時に保存することができない</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">shared_examples_for 'validate length' <span class="operator"><span class="keyword">do</span> |column_name, <span class="keyword">length</span>|</span><br><span class="line">  let(:factory_name) &#123; described_class.<span class="keyword">name</span>.underscore &#125;</span><br><span class="line">  let(:<span class="built_in">record</span>)       &#123; <span class="keyword">build</span>(factory_name) &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">context</span> <span class="string">"#&#123;column_name&#125;が#&#123;length&#125;文字の時"</span> <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">before</span> &#123; <span class="built_in">record</span>[column_name] = <span class="string">"a"</span> * <span class="keyword">length</span>.to_i &#125;</span><br><span class="line"></span><br><span class="line">    it <span class="string">'保存することができない'</span> <span class="keyword">do</span></span><br><span class="line">      expect(<span class="built_in">record</span>).<span class="keyword">to</span> be_invalid</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span></span><br></pre></td></tr></table></figure>
+<p>引数として，必ず対象のカラム名を取るように<br>また他の値が必要であれば，第二引数以降にそれも取るようにします．</p>
+<p>これを， <code>spec/shared/</code> 以下にでも保存しておいて下さい．</p>
+<h2 id="it_behaves_like">it_behaves_like</h2><p>実際にテストを書くべき箇所で，上のテストを使いまわします．</p>
+<p>例えば，</p>
+<ul>
+<li>nameというカラムが空の時は保存されない</li>
+<li>nameというカラムの長さが256の時は保存されない</li>
+</ul>
+<p>ということを確認したい時は</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">it_behaves_like <span class="string">'validate presence'</span>, <span class="symbol">:name</span></span><br><span class="line">it_behaves_like <span class="string">'validate length'</span>,   <span class="symbol">:name</span>, <span class="number">256</span></span><br></pre></td></tr></table></figure>
+<p>と書くことができます．</p>
+<p>また，違うカラムについて同様のテストを試すこともできます．</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it_behaves_like <span class="string">'validate length'</span>, <span class="symbol">:description</span>, <span class="number">256</span></span><br></pre></td></tr></table></figure>
+<p>こう書くと見た目にも分かりやすく，長さが変更された際も修正が楽かと思います．</p>
+
+      </div>
+      <footer class="article-footer">
+        <a data-url="http://yoursite.com/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/" data-id="ciivgqjts000rdcw7o6d1rs21" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+        
+          <a href="http://yoursite.com/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/#comments" class="article-comment-link"><i class="fa fa-comments"></i>Comments</a>
+        
+        
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rspec/">rspec</a></li></ul>
+
+      </footer>
     </div>
   </article>
-
-    
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year"><i class="icon fa fa-calendar-o"></i>2015</a>
-        </div>
-        <div class="archives">
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/CTF/">CTF</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/CTF/ksnctf/">ksnctf</a></p>
-        <p class="date"><time datetime="2015-12-17T15:51:06.000Z" itemprop="datePublished">2015-12-18</time></p>
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
       </div>
-      <h2 class="article-title">
-        <a href="/2015/12/18/ksnctf-Onion/" class="title">Onion</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        まず， Onion 暗号 でググりました．
-そうするとTorが出てくるので一瞬「Torに関する問題か?」と思いましたが暗号文からはどうもそれが思いつかないため，しばらく考えていたら「エンコードを何重も行う行為として Onion と言っているのでは?」と思いついたので文字列のそれっぽさからBase64のデコードを何重も行っていました．
-そうすると，なんだか begin 666 ... end のよう
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/読みもの/">読みもの</a></p>
-        <p class="date"><time datetime="2015-12-13T05:06:12.000Z" itemprop="datePublished">2015-12-13</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/13/作るものに対してプライドを持つ/" class="title">作るものに対してプライドを持つ</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        この記事は，Pepabo Advent Calendar 2015の13日目の記事です．
-
-「そういえばまだ何も書いていなかったので，新卒研修についての話を書きます．」と書きましたが，他の方々が詳細にまとめていて，私が何か書くような余地が無くて困っています．
-なので，同期のあらみそがまとめた「委員会に出会ったはなし」に乗っかって委員会の一員になっていた人の考えていたことを書こうかと思います．
-
-委
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/その他/">その他</a></p>
-        <p class="date"><time datetime="2015-12-09T15:43:05.000Z" itemprop="datePublished">2015-12-10</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/10/Advent-of-Code-2015/" class="title">Advent of Code 2015</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        http://adventofcode.com/
-やります．Part Twoは別記事で．
-Day 1++ か -- するだけ．
-12345678910int main() &#123;  string s; cin &gt;&gt;s;  int f = 0;  for(char c : s)&#123;    if(c == '(') f++;    else f--;  &#125;  cou
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/linux/">linux</a></p>
-        <p class="date"><time datetime="2015-12-09T15:39:08.000Z" itemprop="datePublished">2015-12-10</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/10/プロセス管理ツールの比較/" class="title">プロセス管理ツールの比較</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        OJT中にhsbtさんに口頭で説明して頂いた、プロセス管理ツールについての説明をメモします。
-解釈ミスにより私が間違って理解しているところがある可能性があるため何か間違っている、もしくは足りない所があれば、指摘して頂けるととても嬉しいです。
-プロセス管理ツールとは通常、プログラムは1度走り切ると終了してしまいます。(デーモン化もしていないのに終了しないプログラムは無限ループしていると言えます)
-ま
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/CodeFestival/">CodeFestival</a></p>
-        <p class="date"><time datetime="2015-12-05T05:49:06.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/CODE-THANKS-FESTIVAL-2015/" class="title">CODE THANKS FESTIVAL 2015</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        オンサイト参加資格が無いので，オープンに出ました．
-http://code-thanks-festival-2015-open.contest.atcoder.jp/
-AAからBに行くときの最短はabs(A - B)です．この場合，100から-100に飛ぶなどということが出来ないので，この計算で大丈夫です．
-12345int main() &#123;  int A, B; cin &gt;&gt
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-        <p class="date"><time datetime="2015-12-05T05:01:24.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/競プロ用C-ライブラリ-幾何/" class="title">競プロ用C++ライブラリ-幾何</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        ほとんどSpaghetti Sourceのコピペです．
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-        <p class="date"><time datetime="2015-12-05T05:01:00.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/競プロ用C-ライブラリ-幾何以外/" class="title">競プロ用C++ライブラリ-幾何以外</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        ほとんどSpaghetti Sourceのコピペです．
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909
-      </p>
-    </div>
-  </article>
-
-    
-  
-    
-    
-    
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/競プロ/">競プロ</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/競プロ/library/">library</a></p>
-        <p class="date"><time datetime="2015-12-05T05:00:57.000Z" itemprop="datePublished">2015-12-05</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/05/競プロ用C-テンプレート/" class="title">競プロ用C++テンプレート</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        テンプレートです．今後競プロ系の記事を上げる際は，主にinclude周りを省略します．
-1234567891011121314151617181920212223242526272829#include &lt;iostream&gt;#include &lt;complex&gt;#include &lt;sstream&gt;#include &lt;string&gt;#include &l
-      </p>
-    </div>
-  </article>
-
-    
-      </div>
-    
-  
-    
-    
-    
-    
-      <div class="article-row">
-    
-        
-  <article class="article article-summary">
-    <div class="article-summary-inner">
-      
-      <div class="article-meta">
-        <p class="category"><a class="article-category-link" href="/categories/application/">application</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/application/rails/">rails</a></p>
-        <p class="date"><time datetime="2015-12-03T14:42:56.000Z" itemprop="datePublished">2015-12-03</time></p>
-      </div>
-      <h2 class="article-title">
-        <a href="/2015/12/03/RailsでSidekiqのログをLTSVで出力する/" class="title">RailsでSidekiqのログをLTSVで出力する</a>
-      </h2>
-      <p class="article-excerpt">
-        
-        これ、置いておきますね。
-Gemfile1gem &#39;ltsv&#39;&#10;gem &#39;sidekiq&#39;
-config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &lt; Sidekiq::Logging::Pretty  def call(severity, time,
-      </p>
-    </div>
-  </article>
-
-    
+    </section>
   
   
-    </div></section>
-  
-  
-    <nav id="page-nav">
-      <span class="pages">Page 1 of 2</span>
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">&raquo;</a>
-    </nav>
-  
-
 
             </div>
           </section>
@@ -474,6 +255,19 @@ config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &
       
     </ul>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/12/18/ksnctf-Onion/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">older</strong>
+      <p class="article-nav-title">Onion</p>
+      <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+    </a>
+  
+</nav>
+
   
   <div class="widgets-container">
     
@@ -598,11 +392,13 @@ config/initializers/sidekiq.yml123456789101112131415class SidekiqLtsvFormatter &
   var disqus_shortname = 'hpalotofwe';
   
   
+  var disqus_url = 'http://yoursite.com/2016/01/01/Rspecのバリデーション周りのテストをshared-examples-forですっきりさせる/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
